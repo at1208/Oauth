@@ -3,7 +3,17 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy
 const FacebookStrategy = require('passport-facebook').Strategy
 const InstagramStrategy = require('passport-instagram').Strategy
 const passport = require('passport')
+const mongoose = require('mongoose')
 const auth = require('../config/key')
+
+const GoogleUser = mongoose.model('GoogleUser')
+const FacebookUser = mongoose.model('FacebookUser')
+// const InstagramUser = mongoose.model('InstagramUser')
+
+
+
+
+
 
 //GOOGLE OAUTH
 passport.use(new GoogleStrategy({
@@ -12,9 +22,10 @@ passport.use(new GoogleStrategy({
   callbackURL: '/auth/google/callback'
 },
  (accessToken, refreshToken, profile, done) => {
-   console.log(accessToken)
-   console.log(refreshToken)
-   console.log(profile)
+  new GoogleUser({
+    googleId: profile.id
+  }).save().then(user => console.log(user)).catch(err => console.log(err))
+
  }
 ))
 
@@ -26,18 +37,21 @@ passport.use( new FacebookStrategy({
   callbackURL: '/auth/facebook/callback'
 },
  (accessToken,refreshToken, profile, done) => {
-   console.log(accessToken)
-   console.log(profile)
+ new FacebookUser({
+   facebookId: profile.id
+ }).save().then(user => console.log(user)).catch(err => console.log(err))
  }
 ))
 
 //INSTAGRAM oauth
-
-passport.use( new InstagramStrategy({
-  clientID: auth.instagramClientID,
-  clientSecret: auth.instagramClientSecret,
-  callbackURL: '/auth/instagram/callback'
-},
-(accessToken, refreshToken, profile, done) => {
-  console.log(accessToken)
-}))
+//
+// passport.use( new InstagramStrategy({
+//   clientID: auth.instagramClientID,
+//   clientSecret: auth.instagramClientSecret,
+//   callbackURL: '/auth/instagram/callback'
+// },
+// (accessToken, refreshToken, profile, done) => {
+//    new InstagramUser({
+//      instagramId: profile.id
+//    }).save().then(user => console.log(user)).catch(err => console.log(err))
+// }))

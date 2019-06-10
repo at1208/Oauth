@@ -1,9 +1,7 @@
 const mongoose = require('mongoose');
-const { Schema } = mongoose.Schema
 
-const FacebookUserSchema = new Schema({
+const FacebookUserSchema = new mongoose.Schema({
 facebookId: String
 })
 
-const FacebookUser = mongoose.model('FacebookUser', FacebookUserSchema)
-module.exports = FacebookUser;
+FacebookUser = mongoose.model('FacebookUser', FacebookUserSchema)

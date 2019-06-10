@@ -1,9 +1,7 @@
 const mongoose = require('mongoose');
-const { Schema } = mongoose.Schema
 
-const GoogleUserSchema = new Schema({
+const GoogleUserSchema = new mongoose.Schema({
 googleId: String
 })
 
-const GoogleUser = mongoose.model('GoogleUser', GoogleUserSchema)
-module.exports = GoogleUser;
+mongoose.model('GoogleUser', GoogleUserSchema)

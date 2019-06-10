@@ -1,9 +1,7 @@
-const mongoose = require('mongoose');
-const { Schema } = mongoose.Schema
-
-const InstagramUserSchema = new Schema({
-instagramId: String
-})
-
-const InstagramUser = mongoose.model('InstagramUser', InstgramUserSchema)
-module.exports = InstagramUser;
+// const mongoose = require('mongoose');
+//
+// const InstagramUserSchema = new mongoose.Schema({
+// instagramId: String
+// })
+//
+//  mongoose.model('InstagramUser', InstagramUserSchema)
