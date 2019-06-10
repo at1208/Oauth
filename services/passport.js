@@ -11,22 +11,21 @@ const FacebookUser = mongoose.model('FacebookUser')
 // const InstagramUser = mongoose.model('InstagramUser')
 
 
-
-
-
-
 //GOOGLE OAUTH
 passport.use(new GoogleStrategy({
   clientID: auth.googleClientID,
   clientSecret: auth.googleClientSecret,
   callbackURL: '/auth/google/callback'
 },
- (accessToken, refreshToken, profile, done) => {
-  new GoogleUser({
-    googleId: profile.id
-  }).save().then(user => console.log(user)).catch(err => console.log(err))
+ async (accessToken, refreshToken, profile, done) =>  {
+    const CreateGoogleUser = new GoogleUser({
+      googleId: profile.id
+    })
+ const result = await CreateGoogleUser.save()
+ console.log(result)
+}
 
- }
+
 ))
 
 
@@ -36,10 +35,12 @@ passport.use( new FacebookStrategy({
   clientSecret: auth.facebookClientSecret,
   callbackURL: '/auth/facebook/callback'
 },
- (accessToken,refreshToken, profile, done) => {
- new FacebookUser({
-   facebookId: profile.id
- }).save().then(user => console.log(user)).catch(err => console.log(err))
+ async (accessToken,refreshToken, profile, done) => {
+const CreateFacebookUser = new FacebookUser({
+  facebookId: profile.id
+})
+const result = await CreateFacebookUser.save()
+ console.log(result )
  }
 ))
 
