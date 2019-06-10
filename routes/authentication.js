@@ -11,7 +11,5 @@ module.exports = (app) => {
   app.get('/auth/facebook/callback', passport.authenticate('facebook'));
 
 
-  app.get('/auth/instagram', passport.authenticate('instagram', { scope: ['comments', 'relationships']}));
-  app.get('auth/instagram/callback', passport.authenticate('instagram'))
-
+   
 }

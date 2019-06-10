@@ -3,7 +3,6 @@ const app = express();
 const mongoose  = require('mongoose');
 require('./models/googleuser')
 require('./models/facebookuser')
-require('./models/instagramuser')
 require('./services/passport')
 require('./routes/authentication')(app)
 
