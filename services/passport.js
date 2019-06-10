@@ -17,15 +17,22 @@ passport.use(new GoogleStrategy({
   clientSecret: auth.googleClientSecret,
   callbackURL: '/auth/google/callback'
 },
- async (accessToken, refreshToken, profile, done) =>  {
-    const CreateGoogleUser = new GoogleUser({
-      googleId: profile.id
-    })
- const result = await CreateGoogleUser.save()
- console.log(result)
+async (accessToken, refreshToken, profile, done) =>  {
+const FindUser = await GoogleUser.find({ googleId: profile.id })
+console.log(FindUser)
+if(FindUser){
+  console.log('User is Already existed')
+}else{
+  const CreateGoogleUser = new GoogleUser({
+        googleId: profile.id })
+   const result = await CreateGoogleUser.save()
+   console.log(result)
+
 }
 
 
+
+}
 ))
 
 
@@ -35,7 +42,7 @@ passport.use( new FacebookStrategy({
   clientSecret: auth.facebookClientSecret,
   callbackURL: '/auth/facebook/callback'
 },
- async (accessToken,refreshToken, profile, done) => {
+async (accessToken,refreshToken, profile, done) => {
 const CreateFacebookUser = new FacebookUser({
   facebookId: profile.id
 })

@@ -8,7 +8,7 @@ require('./services/passport')
 require('./routes/authentication')(app)
 
 
-mongoose.connect('mongodb://localhost:27017/OauthSignIn', { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost:port/SignIN', { useNewUrlParser: true })
 .then(()=> console.log('connected to mongodb'))
 .catch((err) => console.log(err))
 
