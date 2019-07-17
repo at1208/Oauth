@@ -1,56 +1,67 @@
 
 const GoogleStrategy = require('passport-google-oauth20').Strategy
 const FacebookStrategy = require('passport-facebook').Strategy
-const InstagramStrategy = require('passport-instagram').Strategy
 const passport = require('passport')
 const mongoose = require('mongoose')
 const auth = require('../config/key')
 
 const GoogleUser = mongoose.model('GoogleUser')
 const FacebookUser = mongoose.model('FacebookUser')
-// const InstagramUser = mongoose.model('InstagramUser')
 
+passport.serializeUser((result, done) => {
+  done(null, result.id)
+})
 
+passport.deserializeUser((id, done) => {
+  GoogleUser.findById(id)
+  .then(user => {
+    done(null,user)
+  })
+})
 
 passport.use(new GoogleStrategy({
   clientID: auth.googleClientID,
   clientSecret: auth.googleClientSecret,
   callbackURL: '/auth/google/callback'
 },
-async (accessToken, refreshToken, profile, done) =>  {
-const FindUser = await GoogleUser.find({ googleId: profile.id })
 
-if(FindUser.length){
+async (accessToken, refreshToken, profile, done) =>  {
+const FindUser = await GoogleUser.findOne({ googleId: profile.id })
+
+
+if(FindUser){
   console.log('User is Already existed')
+  done(null,FindUser)
 }else{
   const CreateGoogleUser = new GoogleUser({
-        googleId: profile.id,
-
-        })
+googleId: profile.id })
    const result = await CreateGoogleUser.save()
-   console.log(result)
+   console.log(result.id)
+   done(null, result)
+
 
 }}
+
 ))
 
-passport.use( new FacebookStrategy({
-  clientID: auth.facebookClientID,
-  clientSecret: auth.facebookClientSecret,
-  callbackURL: '/auth/facebook/callback'
-},
-async (accessToken,refreshToken, profile, done) => {
-
-const FindFbUser = await FacebookUser.find({ facebookId: profile.id })
-
-if(FindFbUser.length){
-  console.log('fb user already existed ')
-} else {
-  const CreateFacebookUser = new FacebookUser({
-    facebookId: profile.id,
-    name: profile.displayName,
-  })
-  const result = await CreateFacebookUser.save()
-   console.log(result )
-}}
-))
- 
+// passport.use( new FacebookStrategy({
+//   clientID: auth.facebookClientID,
+//   clientSecret: auth.facebookClientSecret,
+//   callbackURL: '/auth/facebook/callback'
+// },
+// async (accessToken,refreshToken, profile, done) => {
+//
+// const FindFbUser = await FacebookUser.findOne({ facebookId: profile.id })
+//
+// if(FindFbUser){
+//   console.log('fb user already existed ')
+// } else {
+//   const CreateFacebookUser = new FacebookUser({
+//     facebookId: profile.id,
+//     name: profile.displayName,
+//   })
+//   const result = await CreateFacebookUser.save()
+//    console.log(result )
+//
+// }}
+// ))
