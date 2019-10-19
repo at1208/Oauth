@@ -1,8 +1,47 @@
 import React from 'react';
+import './app.css';
+import Slide from 'react-reveal/Slide';
 
 const App = () => {
-  return <div className='container text-center'>
-   <button className='btn btn-lg btn-danger'>Sign in with Google</button>
+  return <>
+
+    <Slide bottom>
+  <div className='container text-center a1'>
+
+  <h1 className='b1'>Hello Aliens, Welcome to Oauth flow</h1>
+
+    <Slide bottom>
+  <div className='a5'>
+   <button className='btn btn-lg  a3'>Sign in with  <i className="fa fa-google a2" aria-hidden="true"></i></button>
+</div>
+   </Slide>
+
+    <Slide bottom>
+  <div className='a5'>
+   <button className='btn btn-lg  a3'>Sign in with  <i className="fa fa-facebook a4" aria-hidden="true"></i></button>
+</div>
+   </Slide>
+
+      <Slide bottom>
+<div className='a5'>
+ <button className='btn btn-lg  a3'>Sign in with  <i className="fa fa-github a6" aria-hidden="true"></i></button>
+</div>
+   </Slide>
+
+      <Slide bottom>
+<div className='a5'>
+ <button className='btn btn-lg  a3'>Sign in with  <i className="fa fa-linkedin a7" aria-hidden="true"></i></button>
+</div>
+   </Slide>
+
+      <Slide bottom>
+<div className='a5'>
+ <button className='btn btn-lg  a3'>Sign in with  <i className="fa fa-instagram a8" aria-hidden="true"></i></button>
+</div>
+   </Slide>
+   
   </div>
+   </Slide>
+  </>
 }
 export default App;
