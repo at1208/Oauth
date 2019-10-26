@@ -1,3 +1,2 @@
 # Oauth
-Google 
-Facebook
+
