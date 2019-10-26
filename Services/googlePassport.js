@@ -29,13 +29,6 @@ const GoogleUser = mongoose.model('GoogleUser')
       }}
       ))
 
-      passport.serializeUser((result, done) => {
-        done(null, result.id)
-      })
+      passport.serializeUser((result, done) => { done(null, result.id)} )
 
-      passport.deserializeUser((id, done) => {
-        GoogleUser.findById(id)
-        .then(user => {
-          done(null,user)
-        })
-      })
+      passport.deserializeUser((id, done) => { GoogleUser.findById(id).then(user => {done(null,user)}) })

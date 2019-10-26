@@ -1,7 +1,7 @@
 import React from 'react';
 import './app.css';
 import Slide from 'react-reveal/Slide';
- 
+
 
 const App = () => {
   return <>
@@ -21,7 +21,7 @@ const App = () => {
 
     <Slide bottom>
   <div className='a5'>
-   <button className='btn btn-lg  a3'>Sign in with  <i className="fa fa-facebook a4" aria-hidden="true"></i></button>
+   <a href='http://localhost:5000/auth/facebook'><button className='btn btn-lg  a3'>Sign in with  <i className="fa fa-facebook a4" aria-hidden="true"></i></button></a>
 </div>
    </Slide>
 
