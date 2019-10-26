@@ -5,8 +5,8 @@ require('../services/passport')
 module.exports = (app) => {
 
     app.get('/auth/google', passport.authenticate('google', { scope: ['email', 'profile']}));
-    app.get('/auth/google/callback', passport.authenticate('google'), (req,res) => {
-         res.send(req.user)
+    app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req,res) => {
+        res.redirect('/currentUser')
     })
 
     app.get('/currentUser', (req,res) => {
