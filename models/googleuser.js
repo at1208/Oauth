@@ -7,5 +7,4 @@ name: String,
 image:  String
 
 })
-
 mongoose.model('GoogleUser', GoogleUserSchema)

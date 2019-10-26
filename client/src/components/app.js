@@ -1,6 +1,7 @@
 import React from 'react';
 import './app.css';
 import Slide from 'react-reveal/Slide';
+ 
 
 const App = () => {
   return <>
@@ -10,11 +11,13 @@ const App = () => {
 
   <h1 className='b1'>Hello Aliens, Welcome to Oauth flow</h1>
 
+
     <Slide bottom>
   <div className='a5'>
-   <button className='btn btn-lg  a3'>Sign in with  <i className="fa fa-google a2" aria-hidden="true"></i></button>
+   <a href='http://localhost:5000/auth/google'><button className='btn btn-lg  a3'>Sign in with  <i className="fa fa-google a2" aria-hidden="true"></i></button></a>
 </div>
    </Slide>
+
 
     <Slide bottom>
   <div className='a5'>
@@ -39,7 +42,7 @@ const App = () => {
  <button className='btn btn-lg  a3'>Sign in with  <i className="fa fa-instagram a8" aria-hidden="true"></i></button>
 </div>
    </Slide>
-   
+
   </div>
    </Slide>
   </>
